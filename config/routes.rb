@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   end
 
   namespace :v1 do
-    get '/users', to: 'users#index'
-    get '/users/create', to: 'users#create'
+    resources :users, only: [:index, :show, :create]
   end
 end

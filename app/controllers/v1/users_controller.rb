@@ -4,16 +4,13 @@ class V1::UsersController < ApplicationController
     render json: users.to_json
   end
 
+  def show
+    user = User.find(params[:id])
+    render json: user.to_json
+  end
+
   def create
-    render json: { doctors: [
-      {
-        name: 'Jason Scotch',
-        specialty: 'Cardio thoracic surgeon'
-      },
-      {
-        name: 'Mary Medelin',
-        specialty: 'Neurosurgeon'
-      }
-    ] }.to_json
+    new_user = User.create(name: params[:name])
+    render json: new_user.to_json
   end
 end
