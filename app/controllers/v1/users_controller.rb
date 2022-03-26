@@ -5,11 +5,11 @@ class V1::UsersController < ApplicationController
   end
 
   def show
-      user = User.find_by_id(params[:id])
-    if user != nil
-      render json: user.to_json
+    user = User.find_by_id(params[:id])
+    if user.nil?
+      render json: { status: 'error', code: 200, message: "Couldn't find user with 'id'=#{params[:id]}" }
     else
-      render json: { status: 'error', code: 200, "message": "Couldn't find Quote with 'id'=#{params[:id]}" }
+      render json: user.to_json
     end
   end
 
@@ -17,7 +17,7 @@ class V1::UsersController < ApplicationController
     new_user = User.new(name: params[:name])
     if new_user.save
       render status: 201, json: {
-        message: "New user created successfully."
+        message: 'New user created successfully.'
       }
     else
       render json: { errors: new_user.errors,
