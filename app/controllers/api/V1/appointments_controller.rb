@@ -1,12 +1,8 @@
 class Api::V1::AppointmentsController < ApplicationController
     def index
-       appointments = Appointment.all
+        @user = User.find(params[:user_id])
+       appointments = @user.appointments
        render json: { status: "Success", message: "Appointments fetched successfully", data: appointments}, status: :ok
-    end
-
-    def show
-        appointment = Appointment.find(params[:id])
-        render json: { status: "Success", message: "Appointment fetched successfully", data: appointment}, status: :ok
     end
 
     def create
@@ -37,6 +33,6 @@ class Api::V1::AppointmentsController < ApplicationController
     private
 
     def appointment_params
-        params.permit(:appointment_date, :city)
+        params.permit(:appointment_date, :city, :user_id)
     end
 end
