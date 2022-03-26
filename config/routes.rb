@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    namespace :v1, defaults: { format: 'json' } do
+    namespace :v1 do
       resources :appointments
     end
   end
