@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :v1, defaults: { format: 'json' } do
-    get 'doctors/', to: 'doctors#index'
+    resources :doctors, only: [:index, :show, :create, :destroy]
   end
 
   namespace :v1 do
