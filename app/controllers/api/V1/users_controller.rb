@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   def index
     users = User.all
-    render json: { status: 'Success', message: 'Users fetched succesfully', data: users}, status: :ok
+    render json: { status: 'Success', message: 'Users fetched succesfully', data: users }, status: :ok
   end
 
   def show
@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
     if user.nil?
       render json: { status: 'Error', code: 200, message: "Couldn't find user with 'id'=#{params[:id]}" }
     else
-      render json: { status: 'Success', message: 'User fetched succesfully', data: user}, status: :ok
+      render json: { status: 'Success', message: 'User fetched succesfully', data: user }, status: :ok
     end
   end
 
@@ -17,7 +17,7 @@ class Api::V1::UsersController < ApplicationController
     new_user = User.new(name: params[:name])
     if new_user.save
       render status: 201, json: {
-        status: 'Success'
+        status: 'Success',
         message: 'New user created successfully.'
       }
     else
