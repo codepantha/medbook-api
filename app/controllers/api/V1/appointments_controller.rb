@@ -1,15 +1,14 @@
 class Api::V1::AppointmentsController < ApplicationController
   def index
     @user = User.find_by_id(params[:user_id])
-    
+
     if @user.nil?
       render json: { status: 'error', message: 'Appointments for this user do not exist' }
     else
       appointments = @user.appointments
       render json: { status: 'Success', message: 'Appointments fetched successfully', data: appointments }, status: :ok
-      
+
     end
-    
   end
 
   def create
