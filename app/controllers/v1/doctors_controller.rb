@@ -24,6 +24,15 @@ class V1::DoctorsController < ApplicationController
     end
   end
 
+  def destroy
+    if @doctor.blank?
+      render json: { error: "Doctor with id #{params[:id]} not found"}, status: 404
+    else
+      @doctor.delete
+      render status: 204
+    end
+  end
+
   private
 
   def set_doctor
