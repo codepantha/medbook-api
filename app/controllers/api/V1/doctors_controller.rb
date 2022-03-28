@@ -1,4 +1,4 @@
-class V1::DoctorsController < ApplicationController
+class Api::V1::DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[show destroy]
 
   def index
@@ -26,7 +26,7 @@ class V1::DoctorsController < ApplicationController
 
   def destroy
     if @doctor.blank?
-      render json: { error: "Doctor with id #{params[:id]} not found"}, status: 404
+      render json: { error: "Doctor with id #{params[:id]} not found" }, status: 404
     else
       @doctor.delete
       render status: 204

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  namespace :v1, defaults: { format: 'json' } do
-    resources :doctors, only: [:index, :show, :create, :destroy]
+  namespace :api do
+    namespace :v1, defaults: { format: 'json' } do
+      resources :doctors, only: [:index, :show, :create, :destroy]
+    end
   end
 
   namespace :v1 do
