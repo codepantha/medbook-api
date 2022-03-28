@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    new_user = User.new(name: params[:name])
+    new_user = User.new(user_params)
     if new_user.save
       render status: 201, json: {
         status: 'Success',
@@ -24,5 +24,11 @@ class Api::V1::UsersController < ApplicationController
       render json: { errors: new_user.errors,
                      status: 422 }
     end
+  end
+
+  private
+
+  def user_params
+    params.permit(:name)
   end
 end
