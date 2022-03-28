@@ -14,6 +14,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_27_112930) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "appointments", force: :cascade do |t|
+    t.date "appointment_date"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "name"
     t.string "profile_pic"
@@ -25,15 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_27_112930) do
     t.decimal "consultation_fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "appointments", force: :cascade do |t|
-    t.date "appointment_date"
-    t.string "city"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
