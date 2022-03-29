@@ -3,4 +3,5 @@ class Appointment < ApplicationRecord
   validates :city, presence: true
 
   belongs_to :user
+  belongs_to :doctor
 end
