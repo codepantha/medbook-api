@@ -1,5 +1,5 @@
 require 'swagger_helper'
-
+# rubocop:disable all
 RSpec.describe 'api/v1/appointments', type: :request do
   path '/api/v1/users/{user_id}/appointments' do
     # You'll want to customize the parameter types...
@@ -35,7 +35,7 @@ RSpec.describe 'api/v1/appointments', type: :request do
       end
     end
   end
-
+  # rubocop:disable
   path '/api/v1/users/{user_id}/appointments/{id}' do
     # You'll want to customize the parameter types...
     parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
@@ -106,3 +106,4 @@ RSpec.describe 'api/v1/appointments', type: :request do
     end
   end
 end
+# rubocop:enable all

@@ -48,6 +48,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rswag-specs'
+  gem 'rubocop'
 end
 
 group :development do

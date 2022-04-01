@@ -17,19 +17,35 @@ components:
           type: string
         city:
           type: string
+    Doctor:
+      properties:
+        name:
+          type: string
+        profile_pic: # update me later
+          type: string
+        specialty:
+          type: string
+        date_of_birth:
+          type: string
+        bio:
+          type: string
+        experience:
+          type: integer
+        consultation_fee:
+          type: number
 paths:
   "/api/v1/users/{user_id}/appointments":
     parameters:
-    - name: user_id
-      in: path
-      description: user_id
-      required: true
-      schema:
-        type: string
+      - name: user_id
+        in: path
+        description: user_id
+        required: true
+        schema:
+          type: string
     get:
       summary: list appointments
       responses:
-        '200':
+        "200":
           description: successful
     post:
       requestBody:
@@ -38,45 +54,52 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Appointment'
+              $ref: "#/components/schemas/Appointment"
       summary: create appointment
       responses:
-        '200':
+        "201":
           description: successful
   "/api/v1/doctors":
     get:
       summary: list doctors
       responses:
-        '200':
+        "200":
           description: successful
     post:
+      requestBody:
+        description: JSON object with doctor info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Doctor"
       summary: create doctor
       responses:
-        '200':
+        "201":
           description: successful
   "/api/v1/doctors/{id}":
     parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
     get:
       summary: show doctor
       responses:
-        '200':
+        "200":
           description: successful
     delete:
       summary: delete doctor
       responses:
-        '200':
+        "204":
           description: successful
   "/api/v1/users":
     get:
       summary: list users
       responses:
-        '200':
+        "200":
           description: successful
     post:
       requestBody:
@@ -85,27 +108,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
 
       summary: create user
       responses:
-        '201':
+        "201":
           description: successful
   "/api/v1/users/{id}":
     parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
     get:
       summary: show user
       responses:
-        '200':
+        "200":
           description: successful
 servers:
-- url: http://{defaultHost}
-  variables:
-    defaultHost:
-      default: 127.0.0.1:3000
+  - url: http://{defaultHost}
+    variables:
+      defaultHost:
+        default: 127.0.0.1:3000
