@@ -23,26 +23,9 @@ class Api::V1::AppointmentsController < ApplicationController
     end
   end
 
-  def destroy
-    appointment = Appointment.find(params[:id])
-    appointment.destroy
-    render json: { status: 'Success', message: 'Appointment deleted successfully', data: appointment }, status: :ok
-  end
-
-  def update
-    appointment = Appointment.find(params[:id])
-    if appointment.update(appointment_params)
-      render json: { status: 'Success', message: 'Appointment updated successfully', data: appointment },
-             status: :ok
-    else
-      render json: { status: 'ERROR', message: 'Appointment not updated', data: appointment.errors },
-             status: :unprocessable_entity
-    end
-  end
-
   private
 
   def appointment_params
-    params.permit(:appointment_date, :city, :user_id)
+    params.permit(:appointment_date, :city, :user_id, :doctor_id)
   end
 end
