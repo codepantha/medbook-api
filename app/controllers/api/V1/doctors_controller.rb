@@ -34,9 +34,11 @@ class Api::V1::DoctorsController < ApplicationController
   end
 
   def profile_pic
-    if @doctor&.profile_pic.attached?
-      render json: url_for(@doctor.profile_pic), status: :ok
-    else 
+    if @doctor&.profile_pic&.attached?
+      render json: {
+        profile_pic_url: url_for(@doctor.profile_pic)
+      }, status: :ok
+    else
       render json: { error: "Doctor with id #{params[:id]} does not have a profile pic" }, status: 404
     end
   end
@@ -49,7 +51,7 @@ class Api::V1::DoctorsController < ApplicationController
 
   def doctor_params
     params.permit(:name, :specialty, :profile_pic, :date_of_birth,
-                                   :experience, :consultation_fee, :bio)
+                  :experience, :consultation_fee, :bio)
   end
 
   def age
