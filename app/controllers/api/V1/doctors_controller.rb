@@ -48,13 +48,13 @@ class Api::V1::DoctorsController < ApplicationController
   end
 
   def doctor_params
-    params.require(:doctor).permit(:name, :specialty, :profile_pic, :date_of_birth,
+    params.permit(:name, :specialty, :profile_pic, :date_of_birth,
                                    :experience, :consultation_fee, :bio)
   end
 
   def age
     now = Time.current
-    dob = params[:doctor][:date_of_birth].to_time # change the string to time format
+    dob = params[:date_of_birth].to_time # change the string to time format
     now.year - dob.year - ((now.month > dob.month) || (now.month == dob.month && now.day >= dob.day) ? 0 : 1)
   end
 end
