@@ -8,5 +8,5 @@ class Doctor < ApplicationRecord
   validates :consultation_fee, numericality: true
   has_one_attached :profile_pic
 
-  has_many :appointments, dependent: :destroy_all
+  has_many :appointments
 end
