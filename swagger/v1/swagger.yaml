@@ -21,8 +21,6 @@ components:
       properties:
         name:
           type: string
-        profile_pic: # update me later
-          type: string
         specialty:
           type: string
         date_of_birth:
@@ -73,6 +71,10 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Doctor"
+          image/png:
+            schema:
+              type: string
+              format: binary
       summary: create doctor
       responses:
         "201":
@@ -132,3 +134,7 @@ servers:
     variables:
       defaultHost:
         default: medbookapi.herokuapp.com
+  - url: http://{defaultHost}
+    variables:
+      defaultHost:
+        default: localhost:3000
