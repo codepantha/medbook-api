@@ -7,5 +7,5 @@ class Doctor < ApplicationRecord
   validates :consultation_fee, presence: { message: 'is a required field' }
   validates :consultation_fee, numericality: true
 
-  has_many :appointments
+  has_many :appointments, dependent: :destroy_all
 end
