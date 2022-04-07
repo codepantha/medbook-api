@@ -6,6 +6,7 @@ class Doctor < ApplicationRecord
   validates :experience, numericality: { only_integer: true }
   validates :consultation_fee, presence: { message: 'is a required field' }
   validates :consultation_fee, numericality: true
+  has_one_attached :profile_pic
 
   has_many :appointments
 end
