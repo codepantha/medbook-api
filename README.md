@@ -20,6 +20,10 @@ Medbook-api is an app built with Ruby on Rails using the MVC architecture. The a
 - Frameworks: ROR
 - Gems: RSpec
 
+## Kanban Board
+
+- [Project](https://github.com/users/codepantha/projects/2)
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
