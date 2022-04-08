@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
   def show
     user = User.find_by(name: params[:id])
     if user.nil?
-      render json: { status: 'Error', code: 404, message: "Couldn't find user with 'name'= #{params[:id]}" }, status: :not_found
+      render json: { status: 'Error', code: 404, message: "Couldn't find user: #{params[:id]}" }, status: :not_found
     else
       render json: { status: 'Success', message: 'User fetched succesfully', data: user }, status: 201
     end
