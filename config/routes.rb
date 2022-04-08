@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root 'swaggers#index'
+  namespace :api do
+    namespace :v1, defaults: { format: 'json' } do
+      resources :doctors, only: [:index, :show, :create, :destroy] do
+        get 'profile_pic', on: :member
+      end
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :show, :create] do
+        resources :appointments, only: [:index, :create]
+      end
+    end
+  end
 end

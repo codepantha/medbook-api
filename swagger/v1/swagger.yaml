@@ -1,0 +1,140 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+components:
+  schemas:
+    User:
+      properties:
+        name:
+          type: string
+    Appointment:
+      properties:
+        doctor_id:
+          type: integer
+        appointment_date:
+          type: string
+        city:
+          type: string
+    Doctor:
+      properties:
+        name:
+          type: string
+        specialty:
+          type: string
+        date_of_birth:
+          type: string
+        bio:
+          type: string
+        experience:
+          type: integer
+        consultation_fee:
+          type: number
+paths:
+  "/api/v1/users/{user_id}/appointments":
+    parameters:
+      - name: user_id
+        in: path
+        description: user_id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: list appointments
+      responses:
+        "200":
+          description: successful
+    post:
+      requestBody:
+        description: JSON object with appointment info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Appointment"
+      summary: create appointment
+      responses:
+        "201":
+          description: successful
+  "/api/v1/doctors":
+    get:
+      summary: list doctors
+      responses:
+        "200":
+          description: successful
+    post:
+      requestBody:
+        description: JSON object with doctor info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Doctor"
+          image/png:
+            schema:
+              type: string
+              format: binary
+      summary: create doctor
+      responses:
+        "201":
+          description: successful
+  "/api/v1/doctors/{id}":
+    parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: show doctor
+      responses:
+        "200":
+          description: successful
+    delete:
+      summary: delete doctor
+      responses:
+        "204":
+          description: successful
+  "/api/v1/users":
+    get:
+      summary: list users
+      responses:
+        "200":
+          description: successful
+    post:
+      requestBody:
+        description: JSON object with user info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+
+      summary: create user
+      responses:
+        "201":
+          description: successful
+  "/api/v1/users/{id}":
+    parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: show user
+      responses:
+        "200":
+          description: successful
+servers:
+  - url: https://{defaultHost}
+    variables:
+      defaultHost:
+        default: medbookapi.herokuapp.com
+  - url: http://{defaultHost}
+    variables:
+      defaultHost:
+        default: localhost:3000
